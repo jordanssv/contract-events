@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import { MetricsDashboard } from "./components/MetricsDashboard";
 import abi from "./abi.json";
+import blacklist from "./blacklist.json";
 
 export default function App() {
   const [submitted, setSubmitted] = useState(false);
+  const [blacklistEnabled, setBlacklistEnabled] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,14 +16,25 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
       <h1 className="text-2xl font-bold mb-4 mt-6">Ethereum Contract Metrics Dashboard</h1>
+      <div className="w-full max-w-md mb-4 flex flex-row items-center justify-end">
+        <label className="flex items-center gap-2 text-sm font-semibold select-none">
+          <input
+            type="checkbox"
+            checked={blacklistEnabled}
+            onChange={() => setBlacklistEnabled(b => !b)}
+            className="w-4 h-4 accent-blue-600"
+          />
+          Enable blacklist (hide events from listed addresses)
+        </label>
+      </div>
       {!submitted ? (
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-md bg-white rounded-2xl shadow-md p-6 space-y-4"
         >
           <div className="text-gray-700">
-            To begin, click continue. <br />
-            <b>Note:</b> Your API secrets are <span className="text-green-700 font-semibold">secured in backend</span>.
+            To begin, click continue.<br/>
+            Your API secrets are <span className="text-green-700 font-semibold">secured in backend</span>.
           </div>
           <button
             type="submit"
@@ -31,7 +44,11 @@ export default function App() {
           </button>
         </form>
       ) : (
-        <MetricsDashboard abi={JSON.stringify(abi)} />
+        <MetricsDashboard
+          abi={JSON.stringify(abi)}
+          blacklist={blacklist}
+          blacklistEnabled={blacklistEnabled}
+        />
       )}
     </div>
   );

@@ -1,5 +1,6 @@
+
 {
-  "name": "ethereum-contract-metrics-dashboard-secure",
+  "name": "ethereum-contract-metrics-dashboard-adv",
   "version": "0.1.0",
   "private": true,
   "type": "module",
