@@ -16,17 +16,17 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
       <h1 className="text-2xl font-bold mb-4 mt-6">bApp Contract Metrics Dashboard</h1>
-      <div className="w-full max-w-md mb-4 flex flex-row items-center justify-end">
+      {/* <div className="w-full max-w-md mb-4 flex flex-row items-center justify-end">
         <label className="flex items-center gap-2 text-sm font-semibold select-none">
-            {/* <input
+            <input
             type="checkbox"
             checked={blacklistEnabled}
             onChange={() => setBlacklistEnabled(b => !b)}
             className="w-4 h-4 accent-blue-600"
           />
           Enable blacklist (hide events from internal addresses)
-        </label>*/}
-      </div>
+        </label>
+      </div>*/}
       {!submitted ? (
         <form
           onSubmit={handleSubmit}
